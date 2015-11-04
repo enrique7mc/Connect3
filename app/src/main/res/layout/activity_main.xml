@@ -10,10 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:src="@drawable/board"
+        android:layout_centerInParent="true"
         android:adjustViewBounds="true" />
 
     <TableLayout
@@ -21,7 +19,9 @@
         android:layout_height="match_parent"
         android:layout_alignTop="@+id/imageView"
         android:layout_alignLeft="@+id/imageView"
-        android:layout_alignStart="@+id/imageView">
+        android:layout_alignStart="@+id/imageView"
+        android:layout_centerInParent="true"
+        android:id="@+id/tableLayout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -99,4 +99,29 @@
 
         </TableRow>
     </TableLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/white"
+        android:id="@+id/message">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Player 1 Won!"
+            android:id="@+id/textView" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play Again"
+            android:id="@+id/button"
+            android:onClick="restartGame" />
+    </LinearLayout>
 </RelativeLayout>
