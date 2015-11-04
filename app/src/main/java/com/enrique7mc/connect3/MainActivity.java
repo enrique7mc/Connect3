@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout message;
     private Boolean winner;
     private boolean turnOne;
+    private boolean gameIsActive = true;
     private int count;
 
     @Override
@@ -63,8 +64,13 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            int resource = turnOne ? R.drawable.yellow : R.drawable.red;
             int index = tiles.indexOf(v);
+
+            if (gameState[index] != null || !gameIsActive) {
+                return;
+            }
+
+            int resource = turnOne ? R.drawable.yellow : R.drawable.red;
             gameState[index] = turnOne;
 
             turnOne = !turnOne;
@@ -78,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
              .setDuration(800);
             count++;
 
-            if (finished() || haveWinner()) {
+            if (haveWinner() || finished()) {
                 message.setTranslationY(-1000f);
                 message.setVisibility(View.VISIBLE);
                 message.animate().translationYBy(1000f).setDuration(1500);
@@ -90,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     label = winner.booleanValue() ? "Yellow wins" : "Red wins";
                 }
+
+                gameIsActive = false;
 
                 textView.setText(label);
             }
@@ -132,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         gameState = new Boolean[9];
         winner = null;
         turnOne = false;
+        gameIsActive = true;
         count = 0;
         hideViews();
     }
